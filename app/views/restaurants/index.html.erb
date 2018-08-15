@@ -1,0 +1,11 @@
+<h2>Yummmzaaa here are some deeelightful restaurants:</h2>
+<div class="container">
+  <ol>
+    <% @restaurants.each do |restaurant| %>
+      <li><%= link_to restaurant.name , restaurant_path(restaurant)%> - cuisine: <strong><%= restaurant.category.capitalize %></strong>
+      </li>
+    <% end %>
+  </ol>
+</div>
+
+<%= link_to "Add a new Restaurant", new_restaurant_path, class: "btn btn-primary"  %>

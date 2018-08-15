@@ -1,0 +1,19 @@
+
+
+<p>Name: <%= @restaurant.name %></p>
+<p>Address: <%= @restaurant.address %></p>
+<p>Phone Number: <%= @restaurant.phone_number %></p>
+<p>Category: <%= @restaurant.category.capitalize %></p>
+
+<p><strong>What are people saying about <%= @restaurant.name %>?</strong></p>
+<% @restaurant.reviews.each do |review| %>
+<p><%= review.content %>: <%= review.rating %>stars</p>
+<% end %>
+
+<br>
+<br>
+<%= link_to "Main Menu", restaurants_path, class: "btn btn-primary" %>
+<br><br>
+<%= link_to "Write a new review", new_restaurant_review_path(@restaurant), class: "btn btn-primary"  %>
+
+
