@@ -1,19 +1,37 @@
+<div>
+  <h2>Restaurant info</h2>
+  <p>Name: <%= @restaurant.name %></p>
+  <p>Address: <%= @restaurant.address %></p>
+  <p>Phone Number: <%= @restaurant.phone_number %></p>
+  <p>Category: <%= @restaurant.category.capitalize %></p>
+
+  <p><strong>What are people saying about <%= @restaurant.name %>?</strong></p>
+  <% @restaurant.reviews.each do |review| %>
+    <p><%= review.content %>: <%= review.rating %>stars</p>
+  <% end %>
+</div>
+<div>
+<h2>Write a review of <%= @restaurant.name %></h2>
+
+<ul class="alerts">
+  <% if @review.errors %>
+    <% @review.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  <% end %>
+</ul>
 
 
-<p>Name: <%= @restaurant.name %></p>
-<p>Address: <%= @restaurant.address %></p>
-<p>Phone Number: <%= @restaurant.phone_number %></p>
-<p>Category: <%= @restaurant.category.capitalize %></p>
-
-<p><strong>What are people saying about <%= @restaurant.name %>?</strong></p>
-<% @restaurant.reviews.each do |review| %>
-<p><%= review.content %>: <%= review.rating %>stars</p>
+<%= simple_form_for([@restaurant, @review]) do |f| %>
+<%= f.input :content %>
+<%= f.input :rating, collection: [0, 1, 2, 3, 4, 5] %>
+<%= f.submit %>
 <% end %>
 
 <br>
 <br>
-<%= link_to "Main Menu", restaurants_path, class: "btn btn-primary" %>
+  <%= link_to "Main Menu", restaurants_path, class: "btn btn-primary" %>
 <br><br>
-<%= link_to "Write a new review", new_restaurant_review_path(@restaurant), class: "btn btn-primary"  %>
+  <%= link_to "Write a new review", new_restaurant_review_path(@restaurant), class: "btn btn-primary"  %>
 
-
+</div>

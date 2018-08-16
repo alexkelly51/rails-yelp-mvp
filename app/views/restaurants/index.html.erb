@@ -1,5 +1,6 @@
-<h2>Yummmzaaa here are some deeelightful restaurants:</h2>
 <div class="container">
+<h2>Yummmzaaa here are some deeelightful restaurants:</h2>
+<div class="container index_box">
   <ol>
     <% @restaurants.each do |restaurant| %>
       <li><%= link_to restaurant.name , restaurant_path(restaurant)%> - cuisine: <strong><%= restaurant.category.capitalize %></strong>
@@ -9,3 +10,4 @@
 </div>
 
 <%= link_to "Add a new Restaurant", new_restaurant_path, class: "btn btn-primary"  %>
+</div>
